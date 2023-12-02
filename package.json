@@ -1,0 +1,53 @@
+{
+  "name": "packagea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "prepublish": "pnpm version && yarn build",
+  "scripts": {
+    "dev": "rollup -w -c",
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "husky": {
+    "hook": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "node --max_old_sapce_size=8192 ./node_modules/.bin/prettier -w",
+      "node --max_old_space_size=8192 ./node_modules/.bin/eslint --fix --color",
+      "git add"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.55.0",
+    "husky": "3.1.0",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0",
+    "rollup": "^4.6.1",
+    "typescript": "^5.3.2"
+  }
+}
